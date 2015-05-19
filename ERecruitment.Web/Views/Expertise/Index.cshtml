@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Expertise list";
+}
+
+
+<div class="row" ng-controller="ExpertiseController">
+    <div class="col-md-12">
+        <br />
+        <br />
+        <table>
+            <tr>
+                <th>
+                    Expertise Code
+                </th>
+                <th>
+                    Expertise Name
+                </th>
+            </tr>
+            <tr ng-repeat="expertise in expertises">
+                <td>{{ expertise.ExpertiseCode }}</td>
+                <td>{{ expertise.ExpertiseName }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
