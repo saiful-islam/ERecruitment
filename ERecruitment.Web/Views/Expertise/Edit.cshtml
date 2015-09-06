@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Edit Expertise";
+}
+
+
+<div class="row" ng-controller="ExpertiseController">
+    <div class="col-md-12">
+        <br />
+        <p>
+            Expertise ID : <input id="newExpertiseID" class="form-control" type="text" placeholder="@ViewBag.expertiseCode" value="@ViewBag.expertiseCode" disabled="">
+        </p>
+        <p>
+            Old Expertise Name : <input class="form-control" type="text" placeholder="@ViewBag.expertiseName" disabled="">
+        </p>
+        <p>
+            New Expertise Name : <input ng-model="newExpertiseName" class="form-control" />
+            <br />
+            <button class="btn btn-info" ng-click="ChangeExpertiseInfo()">Save</button>
+            <br />
+            <br />
+            @Html.ActionLink("Back to expertise list", "Index")
+        </p>
+    </div>
+</div>
+
+

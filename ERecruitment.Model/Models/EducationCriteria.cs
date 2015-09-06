@@ -14,10 +14,10 @@ namespace ERecruitment.Model.Models
         {
  
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 1), ForeignKey("JobDetails")]
         public int JobID { get; set; }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 2), ForeignKey("InstituteInfo")]
         public int InstituteID { get; set; }
         public virtual InstituteInfo InstituteInfo { get; set; }

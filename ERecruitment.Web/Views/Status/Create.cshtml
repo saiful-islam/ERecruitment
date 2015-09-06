@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Create Status";
+}
+<div class="row" ng-controller="StatusController">
+    <div class="col-lg-6 well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Status Info</legend>
+                <div class="form-group">
+                    <label for="StatusName" class="col-lg-4 control-label">Status Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="StatusName" placeholder="Status Name" ng-model="inputStatus">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-4">
+                        <button class="btn btn-primary" ng-click="SaveStatusInfo()">Save</button>
+                    </div>
+                </div>
+
+                <br />
+                @Html.ActionLink("Back to Status list", "Index")
+            </fieldset>
+        </form>
+    </div>
+</div>

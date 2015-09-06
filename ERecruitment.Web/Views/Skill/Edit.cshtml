@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Edit Skill";
+}
+
+
+<div class="row" ng-controller="SkillController">
+    <div class="col-md-12">
+        <br />
+        <p>
+            Skill ID : <input id="newSkillID" class="form-control" type="text" placeholder="@ViewBag.SkillID" value="@ViewBag.SkillID" disabled="">
+        </p>
+        <p>
+            Old Skill Name : <input class="form-control" type="text" placeholder="@ViewBag.SkillName" disabled="">
+        </p>
+        <p>
+            New Skill Name : <input ng-model="newSkillName" class="form-control" />
+            <br />
+            <button class="btn btn-info" ng-click="ChangeSkillInfo()">Save</button>
+            <br />
+            <br />
+            @Html.ActionLink("Back to Skill list", "Index")
+        </p>
+    </div>
+</div>
+
+

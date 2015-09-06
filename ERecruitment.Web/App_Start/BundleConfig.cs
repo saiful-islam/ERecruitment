@@ -9,7 +9,8 @@ namespace ERecruitment.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.datetimepicker.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -29,10 +30,30 @@ namespace ERecruitment.Web
                      "~/Scripts/Angular/app.js",
                      "~/Scripts/Angular/Controllers/HomeController.js",
                      "~/Scripts/Angular/Controllers/ExpertiseController.js",
-                     "~/Scripts/Angular/Models/ExpertiseModel.js"));
+                     "~/Scripts/Angular/Controllers/StatusController.js",
+                     "~/Scripts/Angular/Controllers/SkillController.js",
+                     "~/Scripts/Angular/Controllers/ApplicantController.js",
+                     "~/Scripts/Angular/Controllers/JobController.js",
+                     "~/Scripts/Angular/Controllers/SelectApplicantController.js",
+                     "~/Scripts/Angular/Models/ExpertiseModel.js",
+                     "~/Scripts/Angular/Models/StatusModel.js",
+                     "~/Scripts/Angular/Models/ApplicantModel.js",
+                     "~/Scripts/Angular/Models/CareerModel.js",
+                     "~/Scripts/Angular/Models/EducationModel.js",
+                     "~/Scripts/Angular/Models/InstituteModel.js",
+                     "~/Scripts/Angular/Models/JobModel.js",
+                     "~/Scripts/Angular/Models/ProjectThesisModel.js",
+                     "~/Scripts/Angular/Models/SkillModel.js",
+                     "~/Scripts/Angular/Models/SkillHistoryModel.js",
+                     "~/Scripts/Angular/Models/RequiredJobEducationModel.js",
+                     "~/Scripts/Angular/Models/RequiredJobSkillModel.js",
+                     "~/Scripts/Angular/Models/ExamModel.js",
+                     "~/Scripts/aftersite.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/dataTables.bootstrap.min.css",
+                       "~/Content/jquery.datetimepicker.css"));
         }
     }
 }

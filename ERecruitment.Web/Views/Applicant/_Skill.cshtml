@@ -1,0 +1,30 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <input type="checkbox" ng-model="checkedSkill" aria-label="Toggle ngHide"> <span>Applicant Skill</span>  <br />
+    </div>
+    <div class="panel-body" ng-show="checkedSkill">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>
+                    Skill Name
+                </th>
+                <th>
+                    IsPrimary
+                </th>
+            </tr>
+            <tr ng-repeat="skill in skills">
+                <td>
+                    <select ng-model="skill.SkillID" class="form-control"
+                            ng-options="value.SkillID as value.SkillName for value in skillNames"></select>
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="skill.IsPrimary">
+                </td>
+            </tr>
+
+        </table>
+
+        <button class="btn btn-primary" ng-click="AddSkill()">Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveSkill()">Delete</button>
+    </div>
+</div>

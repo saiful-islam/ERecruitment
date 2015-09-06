@@ -18,7 +18,7 @@ namespace ERecruitment.Model.Models
             this.CareerInfo = new HashSet<CareerInfo>();
             this.ProjectThesisInfo = new HashSet<ProjectThesisInfo>();
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApplicantID { get; set; }
         [Required]
         public string FirstName { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace ERecruitment.Model.Models
             this.EducationHistory = new HashSet<EducationHistory>();
             this.EducationCriteria = new HashSet<EducationCriteria>();
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InstituteID { get; set; }
         [Required]
         public string InstituteName { get; set; }

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Delete Expertise";
+}
+
+
+<div class="row" ng-controller="ExpertiseController">
+    <div class="col-md-12">
+        <br />
+        <p>
+            Expertise ID : <input id="deleteExpertiseID" class="form-control" type="text" placeholder="@ViewBag.expertiseCode" value="@ViewBag.expertiseCode" disabled="">
+        </p>
+        <p>
+            Expertise Name : <input class="form-control" type="text" placeholder="@ViewBag.expertiseName" disabled="">
+        </p>
+        <p>
+            <button class="btn btn-info" ng-click="DeleteExpertiseInfobyID()">Delete</button>
+            <br />
+            <br />
+            @Html.ActionLink("Back to expertise list", "Index")
+        </p>
+    </div>
+</div>
+
+

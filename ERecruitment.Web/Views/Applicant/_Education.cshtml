@@ -1,0 +1,53 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <input type="checkbox" ng-model="checkedEducation" aria-label="Toggle ngHide">
+        <span>Education info</span>
+        <br />
+    </div>
+    <div class="panel-body" ng-show="checkedEducation">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Education Name
+                </th>
+                <th>Institute Name
+                </th>
+                <th>Major
+                </th>
+                <th>Result
+                </th>
+                <th>Passing Year
+                </th>
+                <th>IsOldResultSystem
+                </th>
+            </tr>
+            <tr ng-repeat="education in educations">
+                <td>
+                    <select ng-model="education.EducationID" class="form-control"
+                        ng-options="value.EducationID as value.EducationName for value in educationNames">
+                    </select>
+                </td>
+                <td>
+                    <select ng-model="education.InstituteID" class="form-control"
+                        ng-options="value.InstituteID as value.InstituteName for value in institutes">
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="Major" ng-model="education.Major">
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="Result" ng-model="education.Result">
+                </td>
+                <td>
+                    <input type="text" class="form-control datePicker" placeholder="Result" ng-model="education.PassingYear">
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="education.IsOldResultSystem">
+                </td>
+            </tr>
+
+        </table>
+
+        <button class="btn btn-primary" ng-click="AddEducationInfo()">Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveEducationInfo()">Delete</button>
+    </div>
+</div>

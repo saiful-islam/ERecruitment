@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Edit Status";
+}
+
+
+<div class="row" ng-controller="StatusController">
+    <div class="col-md-12">
+        <br />
+        <p>
+            Status ID : <input id="newStatusID" class="form-control" type="text" placeholder="@ViewBag.statusCode" value="@ViewBag.statusCode" disabled="">
+        </p>
+        <p>
+            Old Status Name : <input class="form-control" type="text" placeholder="@ViewBag.status" disabled="">
+        </p>
+        <p>
+            New Status Name : <input ng-model="newStatus" class="form-control" />
+            <br />
+            <button class="btn btn-info" ng-click="ChangeStatusInfo()">Save</button>
+            <br />
+            <br />
+            @Html.ActionLink("Back to Status list", "Index")
+        </p>
+    </div>
+</div>
+
+

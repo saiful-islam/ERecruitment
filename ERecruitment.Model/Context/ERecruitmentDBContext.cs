@@ -24,10 +24,6 @@ namespace ERecruitment.Model.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-        public DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public DbSet<AspNetUsers> AspNetUsers { get; set; }
         public DbSet<ApplicantInfo> ApplicantInfo { get; set; }
         public DbSet<ApplicantSkillHistory> ApplicantSkillHistory { get; set; }
         public DbSet<CareerInfo> CareerInfo { get; set; }

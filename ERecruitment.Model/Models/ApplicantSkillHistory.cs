@@ -14,12 +14,13 @@ namespace ERecruitment.Model.Models
         {
  
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 1), ForeignKey("ApplicantInfo")]
         public int ApplicantID { get; set; }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 2), ForeignKey("SkillInfo")]
         public int SkillID { get; set; }
+        public bool IsPrimary { get; set; }
         public virtual ApplicantInfo ApplicantInfo { get; set; }
         public virtual SkillInfo SkillInfo { get; set; }
     }

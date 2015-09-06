@@ -14,19 +14,21 @@ namespace ERecruitment.Model.Models
         {
  
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 1), ForeignKey("ApplicantInfo")]
         public int ApplicantID { get; set; }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 2), ForeignKey("EducationInfo")]
         public int EducationID { get; set; }
         [Required]
         public string Major { get; set; }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column(Order = 3), ForeignKey("InstituteInfo")]
         public int InstituteID { get; set; }
         [Required]
         public string Result { get; set; }
+        [Required]
+        public DateTime PassingYear { get; set; }
         [Required]
         public bool IsOldResultSystem { get; set; }
 

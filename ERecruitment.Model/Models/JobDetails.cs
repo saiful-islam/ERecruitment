@@ -17,20 +17,19 @@ namespace ERecruitment.Model.Models
             this.ExamInfo = new HashSet<ExamInfo>();
         }
 
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int JobID { get; set; }
         [Required]
         public string JobName { get; set; }
-        [Required, ForeignKey("AspNetUsers")]
-        public string UserID { get; set; }
         [Required]
-        public int Experiance { get; set; }
+        public string UserID { get; set; }
+        public float MinimumExperiance { get; set; }
+        public float MaximumExperiance { get; set; }
         [Required]
         public DateTime SubmissionDeadline { get; set; }
 
         public virtual ICollection<RequiredJobSkills> RequiredJobSkills { get; set; }
         public virtual ICollection<EducationCriteria> EducationCriteria { get; set; }
         public virtual ICollection<ExamInfo> ExamInfo { get; set; }
-        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

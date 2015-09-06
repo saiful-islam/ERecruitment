@@ -14,7 +14,7 @@ namespace ERecruitment.Model.Models
         {
  
         }
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProjectThesisID { get; set; }
         [Required]
         [ForeignKey("ApplicantInfo")]

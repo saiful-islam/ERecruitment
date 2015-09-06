@@ -5,10 +5,12 @@
 
 
 <div class="row" ng-controller="ExpertiseController">
-    <div class="col-md-12">
-        <br />
-        <br />
-        <table>
+    <div class="col-md-12 col-lg-6">
+        <br/>
+        @Html.ActionLink("Create new expertise", "Create")
+        <br/>
+        <br/>
+        <table class="table table-striped table-bordered">
             <tr>
                 <th>
                     Expertise Code
@@ -16,11 +18,19 @@
                 <th>
                     Expertise Name
                 </th>
+                <th>
+                    
+                </th>
             </tr>
             <tr ng-repeat="expertise in expertises">
                 <td>{{ expertise.ExpertiseCode }}</td>
                 <td>{{ expertise.ExpertiseName }}</td>
+                <td>
+                    <button class="btn btn-primary btn-xs" ng-click="EditExpertiseInfo(expertise)">Edit</button>
+                    <button class="btn btn-danger btn-xs" ng-click="DeleteExpertiseInfo(expertise)">Delete</button>
+                </td>
             </tr>
         </table>
+
     </div>
 </div>

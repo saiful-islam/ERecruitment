@@ -8,6 +8,7 @@ using ERecruitment.Model.Models;
 using ERecruitment.Model.Context;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ERecruitment.API.Controllers
 {
@@ -32,8 +33,14 @@ namespace ERecruitment.API.Controllers
         {
             try
             {
+                int maxid = 0;
+                if (Db.ExpertiseInfo.Any())
+                {
+                    maxid = Db.ExpertiseInfo.Max(e => e.ExpertiseCode);
+                }
                 var obj = new ExpertiseInfo
                 {
+                    ExpertiseCode = maxid + 1,
                     ExpertiseName = objExpertise.ExpertiseName
                 };
                 Db.ExpertiseInfo.Add(obj);
@@ -46,15 +53,15 @@ namespace ERecruitment.API.Controllers
                 return ex.Message;
             }
         }
-        public string Put(int expertiseCode, ExpertiseInfo objExpertise)
+        public string Put(ExpertiseInfo objExpertise)
         {
             try
             {
-                ExpertiseInfo obj = new ExpertiseInfo { ExpertiseName = objExpertise.ExpertiseName };
-                Db.ExpertiseInfo.Add(obj);
+                var obj = Db.ExpertiseInfo.Find(objExpertise.ExpertiseCode);
+                obj.ExpertiseName = objExpertise.ExpertiseName;
 
                 Db.SaveChanges();
-                return "Saved";
+                return "Updated";
             }
             catch (Exception ex)
             {
@@ -62,8 +69,19 @@ namespace ERecruitment.API.Controllers
             }
         }
         // DELETE api/expertise/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
+            try
+            {
+                var obj = Db.ExpertiseInfo.Find(id);
+                Db.Entry(obj).State = EntityState.Deleted;
+                Db.SaveChanges();
+                return "Deleted";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

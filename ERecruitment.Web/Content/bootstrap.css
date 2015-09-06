@@ -4501,26 +4501,26 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #0066A1;
-  border-color: #0066A1;
+  background-color: #2E64FE;
+  border-color: #2E64FE;
 }
 
 .navbar-inverse .navbar-brand {
-  color: whitesmoke;
+  color: #fbf6f6;
 }
 
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: ButtonFace;
+  color: #ffffff;
   background-color: transparent;
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #fbf6f6;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: aqua;
+  color: #fbf6f6;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,

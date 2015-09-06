@@ -1,0 +1,27 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <input type="checkbox" ng-model="checkedEducation" aria-label="Toggle ngHide">
+        <span>Required Institutes</span>
+        <br />
+    </div>
+    <div class="panel-body" ng-show="checkedEducation">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Institute Name
+                </th>
+               
+            </tr>
+            <tr ng-repeat="education in educations">
+                <td>
+                    <select ng-model="education.InstituteID" class="form-control"
+                        ng-options="value.InstituteID as value.InstituteName for value in institutes">
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+
+        <button class="btn btn-primary" ng-click="AddEducation()">Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveEducation()">Delete</button>
+    </div>
+</div>

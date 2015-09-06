@@ -1,16 +1,27 @@
 ﻿@{
     ViewBag.Title = "Create Expertise";
 }
-
-
 <div class="row" ng-controller="ExpertiseController">
-    <div class="col-md-12">
-        <br />
-        <br />
-        <p>
-            Expertise Name : <input ng-model="inputExpertiseName" class="form-control" />
-            <br />
-            <button class="btn btn-info" ng-click="SaveExpertiseInfo()">Save</button>
-        </p>
+    <div class="col-lg-6 well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Expertise Info</legend>
+                <div class="form-group">
+                    <label for="ExpertiseName" class="col-lg-4 control-label">Expertise Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="ExpertiseName" placeholder="Expertise Name" ng-model="inputExpertiseName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-4">
+                        <button class="btn btn-primary" ng-click="SaveExpertiseInfo()">Save</button>
+                    </div>
+                </div>
+
+                <br />
+                @Html.ActionLink("Back to expertise list", "Index")
+            </fieldset>
+        </form>
     </div>
 </div>

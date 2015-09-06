@@ -48,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ERecruitmentDBContext.cs" />
+    <Compile Include="Migrations\201508051101478_addMamimumExperiance.cs" />
+    <Compile Include="Migrations\201508051101478_addMamimumExperiance.Designer.cs">
+      <DependentUpon>201508051101478_addMamimumExperiance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicantInfo.cs" />
     <Compile Include="Models\ApplicantSkillHistory.cs" />
-    <Compile Include="Models\AspNetRoles.cs" />
-    <Compile Include="Models\AspNetUserClaims.cs" />
-    <Compile Include="Models\AspNetUserLogins.cs" />
-    <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\CareerInfo.cs" />
     <Compile Include="Models\EducationCriteria.cs" />
     <Compile Include="Models\EducationHistory.cs" />
@@ -73,6 +73,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508051101478_addMamimumExperiance.resx">
+      <DependentUpon>201508051101478_addMamimumExperiance.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

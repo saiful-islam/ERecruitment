@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Delete Skill";
+}
+
+
+<div class="row" ng-controller="SkillController">
+    <div class="col-md-12">
+        <br />
+        <p>
+            Skill ID : <input id="deleteSkillID" class="form-control" type="text" placeholder="@ViewBag.SkillID" value="@ViewBag.SkillID" disabled="">
+        </p>
+        <p>
+            Skill Name : <input class="form-control" type="text" placeholder="@ViewBag.SkillName" disabled="">
+        </p>
+        <p>
+            <button class="btn btn-info" ng-click="DeleteSkillInfobyID()">Delete</button>
+            <br />
+            <br />
+            @Html.ActionLink("Back to Skill list", "Index")
+        </p>
+    </div>
+</div>
+
+
