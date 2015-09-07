@@ -42,7 +42,7 @@ namespace ERecruitment.API.Controllers
             else
             {
                 var jobs = (from j in Db.JobDetails
-                            join e in Db.ExamInfo.Where(e => e.ExamTypeID == (id-1)) on j.JobID equals e.JobID
+                            join e in Db.ExamInfo.Where(e => e.ExamTypeID == (id-1) && e.IsExamCompleted) on j.JobID equals e.JobID
                             select new
                             {
                                 j.JobID,
@@ -55,17 +55,9 @@ namespace ERecruitment.API.Controllers
         }
 
         // POST api/Skill
-        public string Post(SkillInfo objSkill)
+        public dynamic Post()
         {
-            try
-            {
-                
-                return "Saved";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+            return "";
         }
         public string Put(SkillInfo objSkill)
         {

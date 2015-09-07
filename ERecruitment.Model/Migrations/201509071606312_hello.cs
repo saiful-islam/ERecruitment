@@ -139,6 +139,7 @@ namespace ERecruitment.Model.Migrations
                         Marks = c.Single(nullable: false),
                         IsRejected = c.Boolean(nullable: false),
                         IsExamCompleted = c.Boolean(nullable: false),
+                        IsPassed = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ApplicantID, t.JobID, t.ExamTypeID })
                 .ForeignKey("dbo.ApplicantInfo", t => t.ApplicantID, cascadeDelete: true)

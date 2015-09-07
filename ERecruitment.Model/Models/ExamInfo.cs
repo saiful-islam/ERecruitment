@@ -31,6 +31,8 @@ namespace ERecruitment.Model.Models
         public bool IsRejected { get; set; }
         [Required]
         public bool IsExamCompleted { get; set; }
+        [Required]
+        public bool IsPassed { get; set; }
 
         public virtual ApplicantInfo ApplicantInfo { get; set; }
         public virtual JobDetails JobDetails { get; set; }

@@ -34,6 +34,7 @@ namespace ERecruitment.Web
                      "~/Scripts/Angular/Controllers/SkillController.js",
                      "~/Scripts/Angular/Controllers/ApplicantController.js",
                      "~/Scripts/Angular/Controllers/JobController.js",
+                     "~/Scripts/Angular/Controllers/ExamController.js",
                      "~/Scripts/Angular/Controllers/SelectApplicantController.js",
                      "~/Scripts/Angular/Models/ExpertiseModel.js",
                      "~/Scripts/Angular/Models/StatusModel.js",

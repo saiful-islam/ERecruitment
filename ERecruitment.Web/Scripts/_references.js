@@ -30,3 +30,4 @@
 /// <reference path="angular/models/requiredjobeducationmodel.js" />
 /// <reference path="angular/controllers/selectapplicantcontroller.js" />
 /// <reference path="angular/models/exammodel.js" />
+/// <reference path="angular/controllers/examcontroller.js" />

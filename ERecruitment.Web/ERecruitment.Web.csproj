@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\SelectApplicantController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -189,6 +190,7 @@
     <Content Include="Scripts\Angular\Controllers\ExpertiseController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\JobController.js" />
+    <Content Include="Scripts\Angular\Controllers\ExamController.js" />
     <Content Include="Scripts\Angular\Controllers\SelectApplicantController.js" />
     <Content Include="Scripts\Angular\Controllers\SkillController.js" />
     <Content Include="Scripts\Angular\Controllers\StatusController.js" />
@@ -282,6 +284,7 @@
     <Content Include="Views\Job\_Skill.cshtml" />
     <Content Include="Views\Job\_Education.cshtml" />
     <Content Include="Views\SelectApplicant\Index.cshtml" />
+    <Content Include="Views\Exam\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

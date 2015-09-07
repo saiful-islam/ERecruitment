@@ -66,7 +66,7 @@ namespace ERecruitment.API.Controllers
                                                  ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
                                              }
                                              ) on a.ApplicantID equals c.ApplicantID
-                                      where !(from e in Db.ExamInfo.Where(e=>e.IsRejected)
+                                      where !(from e in Db.ExamInfo
                                               select e.ApplicantID)
                                         .Contains(a.ApplicantID)
                                       select new
@@ -99,7 +99,7 @@ namespace ERecruitment.API.Controllers
                                                  ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
                                              }
                                              ) on a.ApplicantID equals c.ApplicantID
-                                      where (from e in Db.ExamInfo.Where(e=>e.ExamTypeID==id-1)
+                                      where (from e in Db.ExamInfo.Where(e=>e.ExamTypeID==id-1 && e.IsExamCompleted && e.IsPassed)
                                               select e.ApplicantID)
                                         .Contains(c.ApplicantID)
                                       select new
