@@ -7,13 +7,13 @@ namespace ERecruitment.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addMamimumExperiance : IMigrationMetadata
+    public sealed partial class hello : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addMamimumExperiance));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(hello));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508051101478_addMamimumExperiance"; }
+            get { return "201509061200517_hello"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ namespace ERecruitment.Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addMamimumExperiance : DbMigration
+    public partial class hello : DbMigration
     {
         public override void Up()
         {
@@ -138,6 +138,7 @@ namespace ERecruitment.Model.Migrations
                         ExamDate = c.DateTime(nullable: false),
                         Marks = c.Single(nullable: false),
                         IsRejected = c.Boolean(nullable: false),
+                        IsExamCompleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ApplicantID, t.JobID, t.ExamTypeID })
                 .ForeignKey("dbo.ApplicantInfo", t => t.ApplicantID, cascadeDelete: true)

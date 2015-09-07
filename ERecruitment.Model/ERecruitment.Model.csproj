@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ERecruitmentDBContext.cs" />
-    <Compile Include="Migrations\201508051101478_addMamimumExperiance.cs" />
-    <Compile Include="Migrations\201508051101478_addMamimumExperiance.Designer.cs">
-      <DependentUpon>201508051101478_addMamimumExperiance.cs</DependentUpon>
+    <Compile Include="Migrations\201509061200517_hello.cs" />
+    <Compile Include="Migrations\201509061200517_hello.Designer.cs">
+      <DependentUpon>201509061200517_hello.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicantInfo.cs" />
@@ -75,8 +75,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508051101478_addMamimumExperiance.resx">
-      <DependentUpon>201508051101478_addMamimumExperiance.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509061200517_hello.resx">
+      <DependentUpon>201509061200517_hello.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

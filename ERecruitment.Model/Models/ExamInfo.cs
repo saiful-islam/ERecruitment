@@ -29,6 +29,8 @@ namespace ERecruitment.Model.Models
         public float Marks { get; set; }
         [Required]
         public bool IsRejected { get; set; }
+        [Required]
+        public bool IsExamCompleted { get; set; }
 
         public virtual ApplicantInfo ApplicantInfo { get; set; }
         public virtual JobDetails JobDetails { get; set; }
