@@ -13,7 +13,7 @@ namespace ERecruitment.Model.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509071606312_hello"; }
+            get { return "201509240937409_hello"; }
         }
         
         string IMigrationMetadata.Source

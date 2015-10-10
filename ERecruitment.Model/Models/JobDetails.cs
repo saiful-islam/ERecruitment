@@ -13,7 +13,6 @@ namespace ERecruitment.Model.Models
         public JobDetails()
         {
             this.RequiredJobSkills = new HashSet<RequiredJobSkills>();
-            this.EducationCriteria = new HashSet<EducationCriteria>();
             this.ExamInfo = new HashSet<ExamInfo>();
         }
 
@@ -27,9 +26,11 @@ namespace ERecruitment.Model.Models
         public float MaximumExperiance { get; set; }
         [Required]
         public DateTime SubmissionDeadline { get; set; }
-
+        [Required]
+        [ForeignKey("SectionInfo")]
+        public int SectionId { get; set; }
         public virtual ICollection<RequiredJobSkills> RequiredJobSkills { get; set; }
-        public virtual ICollection<EducationCriteria> EducationCriteria { get; set; }
         public virtual ICollection<ExamInfo> ExamInfo { get; set; }
+        public virtual SectionInfo SectionInfo { get; set; }
     }
 }

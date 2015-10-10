@@ -31,11 +31,18 @@
                     <input type="text" class="form-control date-picker" id="SubmissionDeadline" placeholder="Submission Deadline" ng-model="inputSubmissionDeadline">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="ddlSection" class="col-lg-4 control-label">Select Section</label>
+                <div class="col-lg-8">
+                    <select id="ddlSection" ng-model="SectionId" class="form-control"
+                            ng-options="value.SectionId as value.SectionName for value in sections"></select>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
 @Html.Partial("_Skill")
-@Html.Partial("_Education")
 
 <div class="form-group">
     <div class="col-lg-12">

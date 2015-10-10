@@ -26,6 +26,7 @@ namespace ERecruitment.API.Controllers
                 from e in je.DefaultIfEmpty()
                 join et in Db.ExamTypeInfo on e.ExamTypeID equals et.ExamTypeID into jet
                 from et in jet.DefaultIfEmpty()
+                join s in Db.SectionInfo on j.SectionId equals s.SectionId
                 select new
                 {
                     j.JobID,
@@ -34,7 +35,9 @@ namespace ERecruitment.API.Controllers
                     j.MaximumExperiance,
                     j.SubmissionDeadline,
                     ExamTypeID = et == null ? 0 : et.ExamTypeID,
-                    ExamType = et == null ? "Initial" : et.ExamType
+                    ExamType = et == null ? "Initial" : et.ExamType,
+                    s.SectionId,
+                    s.SectionName
                 }
                 )
                 group exam by exam.JobID
@@ -58,7 +61,6 @@ namespace ERecruitment.API.Controllers
              try
             {
                 JobDetails objJob = JsonConvert.DeserializeObject<JobDetails>(jasonData["objJob"].ToString());
-                List<EducationCriteria> objEducation = JsonConvert.DeserializeObject<List<EducationCriteria>>(jasonData["objEducation"].ToString());
                 List<RequiredJobSkills> objSkillHistories = JsonConvert.DeserializeObject<List<RequiredJobSkills>>(jasonData["objSkill"].ToString());
 
                 int jobId =0;
@@ -73,22 +75,12 @@ namespace ERecruitment.API.Controllers
                     UserID = objJob.UserID,
                     MinimumExperiance = objJob.MinimumExperiance,
                     MaximumExperiance = objJob.MaximumExperiance,
-                    SubmissionDeadline = objJob.SubmissionDeadline
+                    SubmissionDeadline = objJob.SubmissionDeadline,
+                    SectionId = objJob.SectionId
                     
                 };
                 Db.JobDetails.Add(objJobDetails);
                 Db.SaveChanges();
-
-                foreach (var objE in objEducation)
-                {
-                    var objEducationHistory = new EducationCriteria
-                    {
-                        JobID = objJobDetails.JobID,
-                        InstituteID = objE.InstituteID
-                    };
-                    Db.EducationCriteria.Add(objEducationHistory);
-                    Db.SaveChanges();
-                }
 
                 foreach (var objS in objSkillHistories)
                 {
@@ -114,7 +106,6 @@ namespace ERecruitment.API.Controllers
             {
 
                 JobDetails objJob = JsonConvert.DeserializeObject<JobDetails>(jasonData["objJob"].ToString());
-                List<EducationCriteria> objEducation = JsonConvert.DeserializeObject<List<EducationCriteria>>(jasonData["objEducation"].ToString());
                 List<RequiredJobSkills> objSkillHistories = JsonConvert.DeserializeObject<List<RequiredJobSkills>>(jasonData["objSkill"].ToString());
 
                 JobDetails objJobDetails = Db.JobDetails.Single(j => j.JobID == objJob.JobID);
@@ -124,27 +115,9 @@ namespace ERecruitment.API.Controllers
                 objJobDetails.MinimumExperiance = objJob.MinimumExperiance;
                 objJobDetails.MaximumExperiance = objJob.MaximumExperiance;
                 objJobDetails.SubmissionDeadline = objJob.SubmissionDeadline;
-                
+                objJobDetails.SectionId = objJob.SectionId;
+
                 Db.SaveChanges();
-
-                List<EducationCriteria> objOldEducationCriteria = Db.EducationCriteria.Where(j => j.JobID == objJob.JobID).ToList();
-                foreach (var objE in objOldEducationCriteria)
-                {
-                    Db.Entry(objE).State = EntityState.Deleted;
-                    Db.SaveChanges();
-                }
-
-
-                foreach (var objE in objEducation)
-                {
-                    var objEducationHistory = new EducationCriteria
-                    {
-                        JobID = objJobDetails.JobID,
-                        InstituteID = objE.InstituteID
-                    };
-                    Db.EducationCriteria.Add(objEducationHistory);
-                    Db.SaveChanges();
-                }
 
                 List<RequiredJobSkills> objOldSkillHistories = Db.RequiredJobSkills.Where(j => j.JobID == objJob.JobID).ToList();
                 foreach (var objS in objOldSkillHistories)

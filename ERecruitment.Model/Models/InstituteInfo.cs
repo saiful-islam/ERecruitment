@@ -13,7 +13,6 @@ namespace ERecruitment.Model.Models
         public InstituteInfo()
         {
             this.EducationHistory = new HashSet<EducationHistory>();
-            this.EducationCriteria = new HashSet<EducationCriteria>();
         }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InstituteID { get; set; }
@@ -25,6 +24,5 @@ namespace ERecruitment.Model.Models
         public bool IsNationalUniversity { get; set; }
 
         public virtual ICollection<EducationHistory> EducationHistory { get; set; }
-        public virtual ICollection<EducationCriteria> EducationCriteria { get; set; }
     }
 }

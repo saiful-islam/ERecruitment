@@ -13,6 +13,7 @@ namespace ERecruitment.Model.Models
         public ExamTypeInfo()
         {
             this.ExamInfo = new HashSet<ExamInfo>();
+            this.RequiredJobExamTypes = new HashSet<RequiredJobExamTypes>();
         }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ExamTypeID { get; set; }
@@ -20,5 +21,6 @@ namespace ERecruitment.Model.Models
         public string ExamType { get; set; }
 
         public virtual ICollection<ExamInfo> ExamInfo { get; set; }
+        public virtual ICollection<RequiredJobExamTypes> RequiredJobExamTypes { get; set; }
     }
 }

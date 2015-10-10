@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ERecruitment.Model.Models
 {
-    public class EducationCriteria
+    public class RequiredJobExamTypes
     {
-        public EducationCriteria()
+        public RequiredJobExamTypes()
         {
  
         }
@@ -18,9 +18,10 @@ namespace ERecruitment.Model.Models
         [Column(Order = 1), ForeignKey("JobDetails")]
         public int JobID { get; set; }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column(Order = 2), ForeignKey("InstituteInfo")]
-        public int InstituteID { get; set; }
-        public virtual InstituteInfo InstituteInfo { get; set; }
+        [Column(Order = 2), ForeignKey("ExamTypeInfo")]
+        public int ExamTypeID { get; set; }
+        public bool IsRunning { get; set; }
         public virtual JobDetails JobDetails { get; set; }
+        public virtual ExamTypeInfo ExamTypeInfo { get; set; }
     }
 }

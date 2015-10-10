@@ -154,7 +154,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\EducationCriteriaController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\SelectApplicantController.cs" />
     <Compile Include="Controllers\JobController.cs" />
@@ -165,9 +164,11 @@
     <Compile Include="Controllers\InstituteController.cs" />
     <Compile Include="Controllers\JobSkillHistoryController.cs" />
     <Compile Include="Controllers\ExamTypeController.cs" />
+    <Compile Include="Controllers\RequiredJobExamTypesController.cs" />
     <Compile Include="Controllers\SkillHistoryController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\ExpertiseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

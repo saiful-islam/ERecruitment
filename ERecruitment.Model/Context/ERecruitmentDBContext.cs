@@ -27,7 +27,6 @@ namespace ERecruitment.Model.Context
         public DbSet<ApplicantInfo> ApplicantInfo { get; set; }
         public DbSet<ApplicantSkillHistory> ApplicantSkillHistory { get; set; }
         public DbSet<CareerInfo> CareerInfo { get; set; }
-        public DbSet<EducationCriteria> EducationCriteria { get; set; }
         public DbSet<EducationHistory> EducationHistory { get; set; }
         public DbSet<EducationInfo> EducationInfo { get; set; }
         public DbSet<ExamInfo> ExamInfo { get; set; }
@@ -39,5 +38,7 @@ namespace ERecruitment.Model.Context
         public DbSet<RequiredJobSkills> RequiredJobSkills { get; set; }
         public DbSet<SkillInfo> SkillInfo { get; set; }
         public DbSet<StatusInfo> StatusInfo { get; set; }
+        public DbSet<SectionInfo> SectionInfo { get; set; }
+        public DbSet<RequiredJobExamTypes> RequiredJobExamTypes { get; set; }
     }
 }

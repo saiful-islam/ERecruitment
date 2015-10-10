@@ -202,9 +202,9 @@
     <Content Include="Scripts\Angular\Models\InstituteModel.js" />
     <Content Include="Scripts\Angular\Models\JobModel.js" />
     <Content Include="Scripts\Angular\Models\ProjectThesisModel.js" />
-    <Content Include="Scripts\Angular\Models\RequiredJobEducationModel.js" />
     <Content Include="Scripts\Angular\Models\SkillHistoryModel.js" />
     <Content Include="Scripts\Angular\Models\RequiredJobSkillModel.js" />
+    <Content Include="Scripts\Angular\Models\SectionModel.js" />
     <Content Include="Scripts\Angular\Models\SkillModel.js" />
     <Content Include="Scripts\Angular\Models\StatusModel.js" />
     <Content Include="Scripts\bootstrap.js" />

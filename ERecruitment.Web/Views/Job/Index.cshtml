@@ -22,6 +22,9 @@
                 <th>
                     Job Status
                 </th>
+                <th>
+                    Section
+                </th>
                 <th></th>
             </tr>
             <tr ng-repeat="job in jobs">
@@ -30,6 +33,7 @@
                 <td>{{ job.MaximumExperiance }}</td>
                 <td>{{ job.SubmissionDeadline | date : 'MM/dd/yyyy'}}</td>
                 <td>{{ job.ExamType }}</td>
+                <td>{{ job.SectionName }}</td>
                 <td>
                     <button class="btn btn-primary btn-xs" ng-click="EditJobInfo(job.JobID)">Edit</button>
                     <button class="btn btn-danger btn-xs" ng-click="DeleteJobInfo(job.JobID)">Delete</button>

@@ -72,61 +72,11 @@ namespace ERecruitment.Model.Migrations
                         MinimumExperiance = c.Single(nullable: false),
                         MaximumExperiance = c.Single(nullable: false),
                         SubmissionDeadline = c.DateTime(nullable: false),
+                        SectionId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.JobID);
-            
-            CreateTable(
-                "dbo.EducationCriteria",
-                c => new
-                    {
-                        JobID = c.Int(nullable: false),
-                        InstituteID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.JobID, t.InstituteID })
-                .ForeignKey("dbo.InstituteInfo", t => t.InstituteID, cascadeDelete: true)
-                .ForeignKey("dbo.JobDetails", t => t.JobID, cascadeDelete: true)
-                .Index(t => t.JobID)
-                .Index(t => t.InstituteID);
-            
-            CreateTable(
-                "dbo.InstituteInfo",
-                c => new
-                    {
-                        InstituteID = c.Int(nullable: false),
-                        InstituteName = c.String(nullable: false),
-                        IsPrivateUniversity = c.Boolean(nullable: false),
-                        IsNationalUniversity = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.InstituteID);
-            
-            CreateTable(
-                "dbo.EducationHistory",
-                c => new
-                    {
-                        ApplicantID = c.Int(nullable: false),
-                        EducationID = c.Int(nullable: false),
-                        InstituteID = c.Int(nullable: false),
-                        Major = c.String(nullable: false),
-                        Result = c.String(nullable: false),
-                        PassingYear = c.DateTime(nullable: false),
-                        IsOldResultSystem = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.ApplicantID, t.EducationID, t.InstituteID })
-                .ForeignKey("dbo.ApplicantInfo", t => t.ApplicantID, cascadeDelete: true)
-                .ForeignKey("dbo.EducationInfo", t => t.EducationID, cascadeDelete: true)
-                .ForeignKey("dbo.InstituteInfo", t => t.InstituteID, cascadeDelete: true)
-                .Index(t => t.ApplicantID)
-                .Index(t => t.EducationID)
-                .Index(t => t.InstituteID);
-            
-            CreateTable(
-                "dbo.EducationInfo",
-                c => new
-                    {
-                        EducationID = c.Int(nullable: false),
-                        EducationName = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.EducationID);
+                .PrimaryKey(t => t.JobID)
+                .ForeignKey("dbo.SectionInfo", t => t.SectionId, cascadeDelete: true)
+                .Index(t => t.SectionId);
             
             CreateTable(
                 "dbo.ExamInfo",
@@ -159,6 +109,29 @@ namespace ERecruitment.Model.Migrations
                 .PrimaryKey(t => t.ExamTypeID);
             
             CreateTable(
+                "dbo.RequiredJobExamTypes",
+                c => new
+                    {
+                        JobID = c.Int(nullable: false),
+                        ExamTypeID = c.Int(nullable: false),
+                        IsRunning = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.JobID, t.ExamTypeID })
+                .ForeignKey("dbo.ExamTypeInfo", t => t.ExamTypeID, cascadeDelete: true)
+                .ForeignKey("dbo.JobDetails", t => t.JobID, cascadeDelete: true)
+                .Index(t => t.JobID)
+                .Index(t => t.ExamTypeID);
+            
+            CreateTable(
+                "dbo.SectionInfo",
+                c => new
+                    {
+                        SectionId = c.Int(nullable: false),
+                        SectionName = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.SectionId);
+            
+            CreateTable(
                 "dbo.CareerInfo",
                 c => new
                     {
@@ -174,6 +147,46 @@ namespace ERecruitment.Model.Migrations
                 .PrimaryKey(t => t.CareerID)
                 .ForeignKey("dbo.ApplicantInfo", t => t.ApplicantID, cascadeDelete: true)
                 .Index(t => t.ApplicantID);
+            
+            CreateTable(
+                "dbo.EducationHistory",
+                c => new
+                    {
+                        ApplicantID = c.Int(nullable: false),
+                        EducationID = c.Int(nullable: false),
+                        InstituteID = c.Int(nullable: false),
+                        Major = c.String(nullable: false),
+                        Result = c.String(nullable: false),
+                        PassingYear = c.DateTime(nullable: false),
+                        IsOldResultSystem = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.ApplicantID, t.EducationID, t.InstituteID })
+                .ForeignKey("dbo.ApplicantInfo", t => t.ApplicantID, cascadeDelete: true)
+                .ForeignKey("dbo.EducationInfo", t => t.EducationID, cascadeDelete: true)
+                .ForeignKey("dbo.InstituteInfo", t => t.InstituteID, cascadeDelete: true)
+                .Index(t => t.ApplicantID)
+                .Index(t => t.EducationID)
+                .Index(t => t.InstituteID);
+            
+            CreateTable(
+                "dbo.EducationInfo",
+                c => new
+                    {
+                        EducationID = c.Int(nullable: false),
+                        EducationName = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.EducationID);
+            
+            CreateTable(
+                "dbo.InstituteInfo",
+                c => new
+                    {
+                        InstituteID = c.Int(nullable: false),
+                        InstituteName = c.String(nullable: false),
+                        IsPrivateUniversity = c.Boolean(nullable: false),
+                        IsNationalUniversity = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.InstituteID);
             
             CreateTable(
                 "dbo.ExpertiseInfo",
@@ -217,29 +230,31 @@ namespace ERecruitment.Model.Migrations
             DropForeignKey("dbo.ApplicantInfo", "StatusCode", "dbo.StatusInfo");
             DropForeignKey("dbo.ProjectThesisInfo", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.ApplicantInfo", "ExpertiseCode", "dbo.ExpertiseInfo");
+            DropForeignKey("dbo.EducationHistory", "InstituteID", "dbo.InstituteInfo");
+            DropForeignKey("dbo.EducationHistory", "EducationID", "dbo.EducationInfo");
+            DropForeignKey("dbo.EducationHistory", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.CareerInfo", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.ApplicantSkillHistory", "SkillID", "dbo.SkillInfo");
             DropForeignKey("dbo.RequiredJobSkills", "SkillID", "dbo.SkillInfo");
             DropForeignKey("dbo.RequiredJobSkills", "JobID", "dbo.JobDetails");
+            DropForeignKey("dbo.JobDetails", "SectionId", "dbo.SectionInfo");
             DropForeignKey("dbo.ExamInfo", "JobID", "dbo.JobDetails");
             DropForeignKey("dbo.ExamInfo", "ExamTypeID", "dbo.ExamTypeInfo");
+            DropForeignKey("dbo.RequiredJobExamTypes", "JobID", "dbo.JobDetails");
+            DropForeignKey("dbo.RequiredJobExamTypes", "ExamTypeID", "dbo.ExamTypeInfo");
             DropForeignKey("dbo.ExamInfo", "ApplicantID", "dbo.ApplicantInfo");
-            DropForeignKey("dbo.EducationCriteria", "JobID", "dbo.JobDetails");
-            DropForeignKey("dbo.EducationCriteria", "InstituteID", "dbo.InstituteInfo");
-            DropForeignKey("dbo.EducationHistory", "InstituteID", "dbo.InstituteInfo");
-            DropForeignKey("dbo.EducationHistory", "EducationID", "dbo.EducationInfo");
-            DropForeignKey("dbo.EducationHistory", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.ApplicantSkillHistory", "ApplicantID", "dbo.ApplicantInfo");
             DropIndex("dbo.ProjectThesisInfo", new[] { "ApplicantID" });
-            DropIndex("dbo.CareerInfo", new[] { "ApplicantID" });
-            DropIndex("dbo.ExamInfo", new[] { "ExamTypeID" });
-            DropIndex("dbo.ExamInfo", new[] { "JobID" });
-            DropIndex("dbo.ExamInfo", new[] { "ApplicantID" });
             DropIndex("dbo.EducationHistory", new[] { "InstituteID" });
             DropIndex("dbo.EducationHistory", new[] { "EducationID" });
             DropIndex("dbo.EducationHistory", new[] { "ApplicantID" });
-            DropIndex("dbo.EducationCriteria", new[] { "InstituteID" });
-            DropIndex("dbo.EducationCriteria", new[] { "JobID" });
+            DropIndex("dbo.CareerInfo", new[] { "ApplicantID" });
+            DropIndex("dbo.RequiredJobExamTypes", new[] { "ExamTypeID" });
+            DropIndex("dbo.RequiredJobExamTypes", new[] { "JobID" });
+            DropIndex("dbo.ExamInfo", new[] { "ExamTypeID" });
+            DropIndex("dbo.ExamInfo", new[] { "JobID" });
+            DropIndex("dbo.ExamInfo", new[] { "ApplicantID" });
+            DropIndex("dbo.JobDetails", new[] { "SectionId" });
             DropIndex("dbo.RequiredJobSkills", new[] { "SkillID" });
             DropIndex("dbo.RequiredJobSkills", new[] { "JobID" });
             DropIndex("dbo.ApplicantSkillHistory", new[] { "SkillID" });
@@ -249,13 +264,14 @@ namespace ERecruitment.Model.Migrations
             DropTable("dbo.StatusInfo");
             DropTable("dbo.ProjectThesisInfo");
             DropTable("dbo.ExpertiseInfo");
-            DropTable("dbo.CareerInfo");
-            DropTable("dbo.ExamTypeInfo");
-            DropTable("dbo.ExamInfo");
+            DropTable("dbo.InstituteInfo");
             DropTable("dbo.EducationInfo");
             DropTable("dbo.EducationHistory");
-            DropTable("dbo.InstituteInfo");
-            DropTable("dbo.EducationCriteria");
+            DropTable("dbo.CareerInfo");
+            DropTable("dbo.SectionInfo");
+            DropTable("dbo.RequiredJobExamTypes");
+            DropTable("dbo.ExamTypeInfo");
+            DropTable("dbo.ExamInfo");
             DropTable("dbo.JobDetails");
             DropTable("dbo.RequiredJobSkills");
             DropTable("dbo.SkillInfo");
