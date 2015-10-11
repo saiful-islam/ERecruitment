@@ -30,19 +30,22 @@ namespace ERecruitment.API.Controllers
         }
 
         // POST api/RequiredJobExamTypes
-        public string Post(RequiredJobExamTypes objRequiredJobExamTypes)
+        public string Post(List<RequiredJobExamTypes> objRequiredJobExamTypes)
         {
             try
             {
-                var obj = new RequiredJobExamTypes
+                foreach (RequiredJobExamTypes objRequiredJobExamType in objRequiredJobExamTypes)
                 {
-                    JobID = objRequiredJobExamTypes.JobID,
-                    ExamTypeID = objRequiredJobExamTypes.ExamTypeID,
-                    IsRunning = objRequiredJobExamTypes.IsRunning
-                };
-                Db.RequiredJobExamTypes.Add(obj);
+                    var obj = new RequiredJobExamTypes
+                    {
+                        JobID = objRequiredJobExamType.JobID,
+                        ExamTypeID = objRequiredJobExamType.ExamTypeID,
+                        IsRunning = objRequiredJobExamType.IsRunning
+                    };
+                    Db.RequiredJobExamTypes.Add(obj);
 
-                Db.SaveChanges();
+                    Db.SaveChanges();
+                }
                 return "Saved";
             }
             catch (Exception ex)
@@ -50,11 +53,11 @@ namespace ERecruitment.API.Controllers
                 return ex.Message;
             }
         }
-        public string Put(RequiredJobExamTypes objRequiredJobExamTypes)
+        public string Put(List<RequiredJobExamTypes> objRequiredJobExamTypes)
         {
             try
             {
-                List<RequiredJobExamTypes> objJobExam = Db.RequiredJobExamTypes.Where(j => j.JobID == objRequiredJobExamTypes.JobID).ToList();
+                List<RequiredJobExamTypes> objJobExam = Db.RequiredJobExamTypes.Where(j => j.JobID == objRequiredJobExamTypes[0].JobID).ToList();
                 foreach (var objS in objJobExam)
                 {
                     Db.Entry(objS).State = EntityState.Deleted;

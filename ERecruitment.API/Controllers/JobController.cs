@@ -27,6 +27,7 @@ namespace ERecruitment.API.Controllers
                 join et in Db.ExamTypeInfo on e.ExamTypeID equals et.ExamTypeID into jet
                 from et in jet.DefaultIfEmpty()
                 join s in Db.SectionInfo on j.SectionId equals s.SectionId
+
                 select new
                 {
                     j.JobID,

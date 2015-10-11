@@ -35,6 +35,8 @@
                 <td>{{ job.ExamType }}</td>
                 <td>{{ job.SectionName }}</td>
                 <td>
+                    <button class="btn btn-primary btn-xs" ng-show="jobExams.showStartBtn" ng-click="StartJob(job.JobID, job.JobName)">Start</button>
+                    <button class="btn btn-primary btn-xs" ng-hide="jobExams.showStartBtn" ng-click="ProcessJob(job.JobID, job.JobName)">Process</button>
                     <button class="btn btn-primary btn-xs" ng-click="EditJobInfo(job.JobID)">Edit</button>
                     <button class="btn btn-danger btn-xs" ng-click="DeleteJobInfo(job.JobID)">Delete</button>
                 </td>
@@ -43,5 +45,8 @@
     </div>
     <div ng-show="showCreateJob">
         @Html.Partial("_Create")
+    </div>
+    <div ng-show="jobExams.showJobStart">
+        @Html.Partial("_ExamTypes")
     </div>
 </div>
