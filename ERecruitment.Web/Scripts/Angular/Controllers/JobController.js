@@ -117,6 +117,12 @@
         $scope.jobExams.showJobStart = true;
         $scope.showJobList = false;
     };
+
+    $scope.ProcessJob = function (jobId, jobName) {
+        var url = "/SelectApplicant/Index?jobid=" + jobId + "&jobname=" + jobName;
+        window.location.href = url;
+    };
+
     $scope.CancelJobExamType = function () {
         $scope.jobExams.JobId = null;
         $scope.jobExams.JobName = null;
@@ -135,8 +141,7 @@
             window.location.href = "/Job/Index";
         });
     };
-    //$scope.jobExams = { showJobStart: false, showStartBtn: true, JobId: null, JobName: null, ExamTypes: [], SelectedExamTypes: [] };
-
+    
     $scope.AddExamType = function () {
         $scope.jobExams.SelectedExamTypes.push({ ExamTypeID: 0, ExamType: null });
         

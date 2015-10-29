@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+<h2>Create Applicant</h2>
+<div ng-controller="ApplicantController">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"> <span> Applicant basic info</span>  <br />
+        </div>
+        <div class="panel-body" ng-show="checked">
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="FirstName" class="col-lg-4 control-label">First Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="FirstName" placeholder="First Name" ng-model="inputFirstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="LastName" class="col-lg-4 control-label">Last Name</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="LastName" placeholder="Last Name" ng-model="inputLastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="MobileNo" class="col-lg-4 control-label">Mobile No</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="MobileNo" placeholder="Mobile No" ng-model="inputMobileNo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="col-lg-4 control-label">Email</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="Email" placeholder="Email" ng-model="inputEmail">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="MailingAddress" class="col-lg-4 control-label">Mailing Address</label>
+                    <div class="col-lg-8">
+                        <textarea class="form-control" rows="3" id="MailingAddress" placeholder="Mailing Address" ng-model="inputMailingAddress"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectStatus" class="col-lg-4 control-label">Status</label>
+                    <div class="col-lg-8">
+                        <select ng-model="selectedStatus" id="selectStatus" class="form-control"
+                                ng-options="value.StatusCode as value.Status for value in statuses"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectExpertise" class="col-lg-4 control-label">Expertise</label>
+                    <div class="col-lg-8">
+                        <select id="selectExpertise" ng-model="selectedExpertise" class="form-control"
+                                ng-options="value.ExpertiseCode as value.ExpertiseName for value in expertises"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Career")
+    @Html.Partial("_ProjectThesis")
+    @Html.Partial("_Education")
+
+    <div class="form-group">
+        <div class="col-lg-12">
+            @Html.ActionLink("Back to applicant list", "Index")
+
+            <button class="btn btn-primary" ng-click="SaveApplicantInfo()">Save</button>
+        </div>
+    </div>
+    
+</div>
+

@@ -20,32 +20,33 @@ namespace ERecruitment.API.Controllers
         // GET api/expertise
         public dynamic Get()
         {
-            var jobs = from exam in (
-                from j in Db.JobDetails
-                join e in Db.ExamInfo on j.JobID equals e.JobID into je
-                from e in je.DefaultIfEmpty()
-                join et in Db.ExamTypeInfo on e.ExamTypeID equals et.ExamTypeID into jet
-                from et in jet.DefaultIfEmpty()
-                join s in Db.SectionInfo on j.SectionId equals s.SectionId
-
-                select new
-                {
-                    j.JobID,
-                    j.JobName,
-                    j.MinimumExperiance,
-                    j.MaximumExperiance,
-                    j.SubmissionDeadline,
-                    ExamTypeID = et == null ? 0 : et.ExamTypeID,
-                    ExamType = et == null ? "Initial" : et.ExamType,
-                    s.SectionId,
-                    s.SectionName
-                }
-                )
-                group exam by exam.JobID
-                into g
-                orderby g.Key
-                select g.OrderByDescending(z => z.ExamTypeID)
-                    .FirstOrDefault();
+            var jobs = from exam in
+                           (
+                               from j in Db.JobDetails
+                               join e in Db.ExamInfo on j.JobID equals e.JobID into je
+                               from e in je.DefaultIfEmpty()
+                               join et in Db.ExamTypeInfo on e.ExamTypeID equals et.ExamTypeID into jet
+                               from et in jet.DefaultIfEmpty()
+                               join s in Db.SectionInfo on j.SectionId equals s.SectionId
+                               select new
+                               {
+                                   j.JobID,
+                                   j.JobName,
+                                   j.MinimumExperiance,
+                                   j.MaximumExperiance,
+                                   j.SubmissionDeadline,
+                                   ExamTypeID = et == null ? 0 : et.ExamTypeID,
+                                   ExamType = et == null ? "Initial" : et.ExamType,
+                                   s.SectionId,
+                                   s.SectionName,
+                                   IsJobExamTypes = (from rj in Db.RequiredJobExamTypes where rj.JobID == j.JobID select rj).Count() > 0 ? true : false
+                               }
+                               )
+                       group exam by exam.JobID
+                           into g
+                           orderby g.Key
+                           select g.OrderByDescending(z => z.ExamTypeID)
+                               .FirstOrDefault();
             return jobs;
         }
 
