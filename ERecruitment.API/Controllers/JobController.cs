@@ -39,7 +39,8 @@ namespace ERecruitment.API.Controllers
                                    ExamType = et == null ? "Initial" : et.ExamType,
                                    s.SectionId,
                                    s.SectionName,
-                                   IsJobExamTypes = (from rj in Db.RequiredJobExamTypes where rj.JobID == j.JobID select rj).Count() > 0 ? true : false
+                                   IsJobExamTypes = (from rj in Db.RequiredJobExamTypes where rj.JobID == j.JobID select rj).Any(),
+                                   IsJobExamResults = (from exam in Db.ExamInfo where exam.JobID == j.JobID && !exam.IsExamCompleted  select exam).Any()
                                }
                                )
                        group exam by exam.JobID

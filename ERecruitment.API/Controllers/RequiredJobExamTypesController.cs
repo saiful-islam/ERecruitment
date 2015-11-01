@@ -32,10 +32,26 @@ namespace ERecruitment.API.Controllers
         // POST api/RequiredJobExamTypes
         public string Post(List<RequiredJobExamTypes> objRequiredJobExamTypes)
         {
+            int lowestExamTypeId = Int32.MaxValue;
             try
             {
                 foreach (RequiredJobExamTypes objRequiredJobExamType in objRequiredJobExamTypes)
                 {
+                    if (lowestExamTypeId > objRequiredJobExamType.ExamTypeID)
+                    {
+                        lowestExamTypeId = objRequiredJobExamType.ExamTypeID;
+                    }
+                }
+                foreach (RequiredJobExamTypes objRequiredJobExamType in objRequiredJobExamTypes)
+                {
+                    if (lowestExamTypeId == objRequiredJobExamType.ExamTypeID)
+                    {
+                        objRequiredJobExamType.IsRunning = true;
+                    }
+                    else
+                    {
+                        objRequiredJobExamType.IsRunning = false;
+                    }
                     var obj = new RequiredJobExamTypes
                     {
                         JobID = objRequiredJobExamType.JobID,

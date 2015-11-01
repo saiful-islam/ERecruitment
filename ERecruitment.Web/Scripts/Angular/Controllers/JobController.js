@@ -123,6 +123,11 @@
         window.location.href = url;
     };
 
+    $scope.ProcessResult = function (jobId, jobName) {
+        var url = "/Exam/Index?jobid=" + jobId + "&jobname=" + jobName;
+        window.location.href = url;
+    };
+
     $scope.CancelJobExamType = function () {
         $scope.jobExams.JobId = null;
         $scope.jobExams.JobName = null;

@@ -6,17 +6,15 @@
     <br />
     <div class="row">
         <div class="form-group">
-            <label for="ddlExamType" class="col-lg-2 control-label">Select Exam Type</label>
+            <label for="lblExamType" class="col-lg-2 control-label">Select Exam Type</label>
             <div class="col-lg-10">
-                <select ng-model="SelectedExamTypeID" class="form-control" id="ddlExamType"
-                        ng-options="type.ExamTypeID as type.ExamType for type in examTypes" ng-change="ChangeExamType()"></select>
+                <label id="lblExamType">{{ examInfoes.examType }}</label>
             </div>
         </div>
         <div class="form-group">
-            <label for="ddlJob" class="col-lg-2 control-label">Select Exam</label>
+            <label for="lblJobName" class="col-lg-2 control-label">Job</label>
             <div class="col-lg-10">
-                <select ng-model="selectedJobId" class="form-control" id="ddlJob"
-                        ng-options="job.JobID as job.JobName for job in jobs" ng-change="ChangeJob()"></select>
+                <label id="lblJobName">{{ examInfoes.jobname }}</label>
             </div>
         </div>
     </div>
@@ -39,20 +37,20 @@
                 <th>Is Rejected ?</th>
                 <th>Is Passed ?</th>
             </tr>
-            <tr ng-repeat="applicant in applicantList">
+            <tr ng-repeat="applicant in examInfoes.applicantList">
                 <td>{{ applicant.FirstName +" "+ applicant.LastName }}</td>
                 <td>{{ applicant.MobileNo }}</td>
                 <td>{{ applicant.Email }}</td>
-                <td><input type="checkbox" ng-model="applicant.Marks"></td>
+                <td><input type="number" ng-model="applicant.Marks"></td>
                 <td>
-                    <input type="checkbox" ng-model="applicant.IsRejected">
+                    <input type="checkbox" ng-disabled="applicant.IsPassed" ng-model="applicant.IsRejected">
                 </td>
                 <td>
-                    <input type="checkbox" ng-model="applicant.IsPassed">
+                    <input type="checkbox" ng-disabled="applicant.IsRejected" ng-model="applicant.IsPassed">
                 </td>
             </tr>
         </table>
     </div>
-    <button class="btn btn-primary btn-xs" ng-show="SelectedExamTypeID && selectedJobId" ng-click="SaveExam(applicantList)">Save</button>
-    <button class="btn btn-primary btn-xs" ng-show="SelectedExamTypeID && selectedJobId" ng-click="CompleteExam(applicantList)">Complete</button>
+    <button class="btn btn-primary btn-xs" ng-click="SaveExam(examInfoes.applicantList, false)">Save</button>
+    <button class="btn btn-primary btn-xs" ng-click="SaveExam(examInfoes.applicantList, true)">Complete</button>
 </div>

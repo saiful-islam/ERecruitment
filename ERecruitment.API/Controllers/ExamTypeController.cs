@@ -23,8 +23,19 @@ namespace ERecruitment.API.Controllers
             return examTypes;
         }
 
-        // GET api/Skill/5
+        // GET api/ExamType/5
         public dynamic Get(int id)
+        {
+            var examTypes = (from et in Db.ExamTypeInfo
+                join ret in Db.RequiredJobExamTypes on et.ExamTypeID equals ret.ExamTypeID
+                select new
+                {
+                    et.ExamTypeID,
+                    et.ExamType
+                }).ToList();
+            return examTypes;
+        }
+        /*public dynamic Get(int id)
         {
             if (id == 1)
             {
@@ -52,7 +63,7 @@ namespace ERecruitment.API.Controllers
                 return jobs;
             }
             
-        }
+        }*/
 
         // POST api/Skill
         public dynamic Post()

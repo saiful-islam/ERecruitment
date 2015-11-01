@@ -51,105 +51,9 @@ namespace ERecruitment.API.Controllers
         }
 
         // GET api/Skill/5
-        public dynamic Get(int id)
+        public string Get(JObject jasonData)
         {
-             var applicantInfoes = from a in Db.ApplicantInfo.Include(a => a.ExpertiseInfo).Include(a => a.StatusInfo)
-                                   join c in
-                                       (
-                                          from c in Db.CareerInfo
-                                          group c by new { c.ApplicantID } into g
-                                          select new
-                                          {
-                                              ApplicantID = g.Key.ApplicantID,
-                                              ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
-                                          }
-                                          ) on a.ApplicantID equals c.ApplicantID
-                                   where !(from e in Db.ExamInfo
-                                           select e.ApplicantID)
-                                     .Contains(a.ApplicantID)
-                                   select new
-                                   {
-                                       a.ApplicantID,
-                                       a.FirstName,
-                                       a.LastName,
-                                       a.MobileNo,
-                                       a.Email,
-                                       a.MailingAddress,
-                                       a.StatusInfo.Status,
-                                       a.ExpertiseInfo.ExpertiseName,
-                                       Experiance = c.ExperianceDay,
-                                       IsSelected = false,
-                                       a.StatusCode,
-                                       a.ExpertiseCode
-                                   };
-             return applicantInfoes;
-            //if (id == 1)
-            //{
-            //    var applicantInfoes = from a in Db.ApplicantInfo.Include(a => a.ExpertiseInfo).Include(a => a.StatusInfo)
-            //                          join c in
-            //                              (
-            //                                 from c in Db.CareerInfo
-            //                                 group c by new { c.ApplicantID } into g
-            //                                 select new
-            //                                 {
-            //                                     ApplicantID = g.Key.ApplicantID,
-            //                                     ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
-            //                                 }
-            //                                 ) on a.ApplicantID equals c.ApplicantID
-            //                          where !(from e in Db.ExamInfo
-            //                                  select e.ApplicantID)
-            //                            .Contains(a.ApplicantID)
-            //                          select new
-            //                          {
-            //                              a.ApplicantID,
-            //                              a.FirstName,
-            //                              a.LastName,
-            //                              a.MobileNo,
-            //                              a.Email,
-            //                              a.MailingAddress,
-            //                              a.StatusInfo.Status,
-            //                              a.ExpertiseInfo.ExpertiseName,
-            //                              Experiance = c.ExperianceDay,
-            //                              IsSelected = false,
-            //                              a.StatusCode,
-            //                              a.ExpertiseCode
-            //                          };
-            //    return applicantInfoes;
-            //}
-            //else
-            //{
-            //    var applicantInfoes = from a in Db.ApplicantInfo.Include(a => a.ExpertiseInfo).Include(a => a.StatusInfo)
-            //                          join c in
-            //                              (
-            //                                 from c in Db.CareerInfo
-            //                                 group c by new { c.ApplicantID } into g
-            //                                 select new
-            //                                 {
-            //                                     ApplicantID = g.Key.ApplicantID,
-            //                                     ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
-            //                                 }
-            //                                 ) on a.ApplicantID equals c.ApplicantID
-            //                          where (from e in Db.ExamInfo.Where(e=>e.ExamTypeID==id-1 && e.IsExamCompleted && e.IsPassed)
-            //                                  select e.ApplicantID)
-            //                            .Contains(c.ApplicantID)
-            //                          select new
-            //                          {
-            //                              a.ApplicantID,
-            //                              a.FirstName,
-            //                              a.LastName,
-            //                              a.MobileNo,
-            //                              a.Email,
-            //                              a.MailingAddress,
-            //                              a.StatusInfo.Status,
-            //                              a.ExpertiseInfo.ExpertiseName,
-            //                              Experiance = c.ExperianceDay,
-            //                              IsSelected = false,
-            //                              a.StatusCode,
-            //                              a.ExpertiseCode
-            //                          };
-            //    return applicantInfoes;
-            //}
-            
+            return "Nothing";
         }
 
         // POST api/Skill
@@ -160,6 +64,23 @@ namespace ERecruitment.API.Controllers
                 List<ApplicantInfo> objApplicants = JsonConvert.DeserializeObject<List<ApplicantInfo>>(jasonData["objApplicantInfo"].ToString());
                 ExamInfo objExamInfo = JsonConvert.DeserializeObject<ExamInfo>(jasonData["objExamInfo"].ToString());
 
+                List<RequiredJobExamTypes> objRequiredJobExamTypeses =
+                    Db.RequiredJobExamTypes.Where(rj => rj.JobID == objExamInfo.JobID).ToList();
+
+                foreach (RequiredJobExamTypes examTypes in objRequiredJobExamTypeses)
+                {
+                    if (examTypes.ExamTypeID == objExamInfo.ExamTypeID)
+                    {
+                        examTypes.IsRunning = true;
+                    }
+                    else
+                    {
+                        examTypes.IsRunning = false;
+                    }
+                    Db.Entry(examTypes).State = EntityState.Modified; 
+                    Db.SaveChanges();
+                }
+                
                 foreach (var applicant in objApplicants)
                 {
                     var objExam = new ExamInfo
@@ -180,16 +101,83 @@ namespace ERecruitment.API.Controllers
                 return ex.Message;
             }
         }
-        public string Put(SkillInfo objSkill)
+        public dynamic Put(JObject jasonData)
         {
-            try
+            int examTypeId = Convert.ToInt32(jasonData["examTypeId"].ToString());
+            int jobId = Convert.ToInt32(jasonData["jobId"].ToString());
+
+            int runExamType = Db.RequiredJobExamTypes.Where(e => e.JobID == jobId && e.IsRunning).Select(e => e.ExamTypeID).FirstOrDefault();
+            var examInfoes = Db.ExamInfo.Where(e => e.JobID == jobId).ToList();
+            if (examInfoes.Count <= 0)
             {
-                
-                return "Updated";
+                var applicantInfoes =
+                    from a in Db.ApplicantInfo.Include(a => a.ExpertiseInfo).Include(a => a.StatusInfo)
+                    join c in
+                        (
+                            from c in Db.CareerInfo
+                            group c by new { c.ApplicantID }
+                                into g
+                                select new
+                                {
+                                    g.Key.ApplicantID,
+                                    ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
+                                }
+                            ) on a.ApplicantID equals c.ApplicantID
+                    select new
+                    {
+                        a.ApplicantID,
+                        a.FirstName,
+                        a.LastName,
+                        a.MobileNo,
+                        a.Email,
+                        a.MailingAddress,
+                        a.StatusInfo.Status,
+                        a.ExpertiseInfo.ExpertiseName,
+                        Experiance = c.ExperianceDay,
+                        IsSelected = false,
+                        a.StatusCode,
+                        a.ExpertiseCode
+                    };
+                return applicantInfoes;
             }
-            catch (Exception ex)
+            else
             {
-                return ex.Message;
+                var applicantInfoes =
+                    from a in Db.ApplicantInfo.Include(a => a.ExpertiseInfo).Include(a => a.StatusInfo)
+                    join c in
+                        (
+                            from c in Db.CareerInfo
+                            group c by new { c.ApplicantID }
+                                into g
+                                select new
+                                {
+                                    g.Key.ApplicantID,
+                                    ExperianceDay = g.Sum(x => DbFunctions.DiffDays(x.JoinDate, x.LeaveDate))
+                                }
+                            ) on a.ApplicantID equals c.ApplicantID
+                    join e in Db.ExamInfo.Where(e => e.JobID == jobId
+                                            && e.ExamTypeID == runExamType
+                                            && e.IsPassed
+                                            && e.IsExamCompleted
+                                            && !e.IsRejected
+                                            && examTypeId > runExamType
+                                            ) on a.ApplicantID equals e.ApplicantID
+                    select new
+                    {
+                        a.ApplicantID,
+                        a.FirstName,
+                        a.LastName,
+                        a.MobileNo,
+                        a.Email,
+                        a.MailingAddress,
+                        a.StatusInfo.Status,
+                        a.ExpertiseInfo.ExpertiseName,
+                        Experiance = c.ExperianceDay,
+                        IsSelected = false,
+                        a.StatusCode,
+                        a.ExpertiseCode
+                    };
+                return applicantInfoes;
             }
         }
         // DELETE api/Skill/5

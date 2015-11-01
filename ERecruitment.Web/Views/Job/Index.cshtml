@@ -37,6 +37,7 @@
                 <td>
                     <button class="btn btn-primary btn-xs" ng-hide="job.IsJobExamTypes" ng-click="StartJob(job.JobID, job.JobName)">Start</button>
                     <button class="btn btn-primary btn-xs" ng-show="job.IsJobExamTypes" ng-click="ProcessJob(job.JobID, job.JobName)">Process</button>
+                    <button class="btn btn-primary btn-xs" ng-show="job.IsJobExamResults" ng-click="ProcessResult(job.JobID, job.JobName)">Result</button>
                     <button class="btn btn-primary btn-xs" ng-click="EditJobInfo(job.JobID)">Edit</button>
                     <button class="btn btn-danger btn-xs" ng-click="DeleteJobInfo(job.JobID)">Delete</button>
                 </td>
