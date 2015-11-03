@@ -19,7 +19,7 @@ namespace ERecruitment.API.Controllers
         // GET api/Skill
         public ICollection<ExamTypeInfo> Get()
         {
-            var examTypes = Db.ExamTypeInfo.ToList();
+            var examTypes = Db.ExamTypeInfo.Where(e=>e.ExamTypeID != 4).ToList();
             return examTypes;
         }
 
@@ -27,7 +27,7 @@ namespace ERecruitment.API.Controllers
         public dynamic Get(int id)
         {
             var examTypes = (from et in Db.ExamTypeInfo
-                join ret in Db.RequiredJobExamTypes on et.ExamTypeID equals ret.ExamTypeID
+                join ret in Db.RequiredJobExamTypes.Where(r=>r.JobID==id) on et.ExamTypeID equals ret.ExamTypeID
                 select new
                 {
                     et.ExamTypeID,

@@ -8,46 +8,46 @@
             <div class="form-group">
                 <label for="CompanyName" class="col-lg-4 control-label">Company Name</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" id="CompanyName" placeholder="Company Name" ng-model="career.CompanyName">
+                    <input type="text" class="form-control" id="CompanyName" placeholder="Company Name" ng-model="career.CompanyName" ng-disabled="showDetails" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="CareerTitle" class="col-lg-4 control-label">Title</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" id="CareerTitle" placeholder="Title" ng-model="career.Title">
+                    <input type="text" class="form-control" id="CareerTitle" placeholder="Title" ng-model="career.Title" ng-disabled="showDetails" >
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="CareerLocation" class="col-lg-4 control-label">Location</label>
                 <div class="col-lg-8">
-                    <textarea class="form-control" rows="3" id="CareerLocation" placeholder="Location" ng-model="career.Location"></textarea>
+                    <textarea class="form-control" rows="3" id="CareerLocation" placeholder="Location" ng-model="career.Location" ng-disabled="showDetails" ></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="KeyResponsibility" class="col-lg-4 control-label">Key Responsibility</label>
                 <div class="col-lg-8">
-                    <textarea class="form-control" rows="3" id="KeyResponsibility" placeholder="Key Responsibilities" ng-model="career.Description"></textarea>
+                    <textarea class="form-control" rows="3" id="KeyResponsibility" placeholder="Key Responsibilities" ng-model="career.Description" ng-disabled="showDetails" ></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="FromDate" class="col-lg-4 control-label">FromDate</label>
                 <div class="col-lg-8">
-                    <input type="text" id="FromDate" class="form-control date-picker" ng-model="career.JoinDate" />
+                    <input type="text" id="FromDate" class="form-control date-picker" ng-model="career.JoinDate" ng-disabled="showDetails" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="ToDate" class="col-lg-4 control-label">ToDate</label>
                 <div class="col-lg-8">
-                    <input type="text" id="ToDate" class="form-control date-picker" ng-model="career.LeaveDate" />
+                    <input type="text" id="ToDate" class="form-control date-picker" ng-model="career.LeaveDate" ng-disabled="showDetails"  />
                 </div>
             </div>
             <br />
             <hr class="col-lg-11" />
             <br />
         </div>
-        <button class="btn btn-primary" ng-click="AddCarrerInfo()">Add More</button>
-        <button class="btn btn-primary" ng-click="RemoveCarrerInfo()">Delete</button>
+        <button class="btn btn-primary" ng-click="AddCarrerInfo()" ng-disabled="showDetails" >Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveCarrerInfo()" ng-disabled="showDetails" >Delete</button>
     </div>
 </div>

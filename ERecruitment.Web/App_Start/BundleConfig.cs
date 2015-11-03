@@ -26,6 +26,7 @@ namespace ERecruitment.Web
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                      "~/Scripts/angular.min.js",
+                     "~/Scripts/Angular/AG/ag-grid.js",
                      "~/Scripts/site.js",
                      "~/Scripts/Angular/app.js",
                      "~/Scripts/Angular/Controllers/HomeController.js",
@@ -36,6 +37,7 @@ namespace ERecruitment.Web
                      "~/Scripts/Angular/Controllers/JobController.js",
                      "~/Scripts/Angular/Controllers/ExamController.js",
                      "~/Scripts/Angular/Controllers/SelectApplicantController.js",
+                     "~/Scripts/Angular/Controllers/FinalSelectionController.js",
                      "~/Scripts/Angular/Models/ExpertiseModel.js",
                      "~/Scripts/Angular/Models/StatusModel.js",
                      "~/Scripts/Angular/Models/ApplicantModel.js",
@@ -54,7 +56,9 @@ namespace ERecruitment.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/dataTables.bootstrap.min.css",
-                       "~/Content/jquery.datetimepicker.css"));
+                       "~/Content/jquery.datetimepicker.css",
+                       "~/Content/ag-grid.css",
+                       "~/Content/theme-blue.css"));
         }
     }
 }

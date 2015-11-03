@@ -1,4 +1,4 @@
-﻿var app = angular.module("ERecruitment", []);
+﻿var app = angular.module("ERecruitment", ["agGrid"]);
 var userName = document.getElementById("applicationUserName").value;
 app.directive('datePicker', function () {
     return {
@@ -13,3 +13,4 @@ app.directive('datePicker', function () {
         }
     };
 });
+

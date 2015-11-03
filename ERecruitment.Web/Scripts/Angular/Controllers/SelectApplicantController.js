@@ -30,8 +30,10 @@
                 $scope.examInfoes.objApplicant.push(new ApplicantModel(value.ApplicantID, value.FirstName, value.LastName, value.MobileNo, value.Email, value.MailingAddress, value.StatusCode, value.ExpertiseCode));
             }
         });
-        if ($scope.examInfoes.objApplicant.count === 0) {
+        console.log($scope.examInfoes.objApplicant.length);
+        if ($scope.examInfoes.objApplicant.length === 0) {
             alert("Applicants must be selected!!!");
+            autoCursor();
             return;
         }
         $scope.examInfoes.objExam = new ExamModel(0, $scope.examInfoes.jobid, $scope.examInfoes.examTypeId, $scope.examInfoes.examDate, 0, false);

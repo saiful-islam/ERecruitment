@@ -14,17 +14,17 @@
             </tr>
             <tr ng-repeat="skill in skills">
                 <td>
-                    <select ng-model="skill.SkillID" class="form-control"
+                    <select ng-model="skill.SkillID" class="form-control" ng-disabled="showDetails" 
                             ng-options="value.SkillID as value.SkillName for value in skillNames"></select>
                 </td>
                 <td>
-                    <input type="checkbox" ng-model="skill.IsPrimary">
+                    <input type="checkbox" ng-model="skill.IsPrimary" ng-disabled="showDetails" >
                 </td>
             </tr>
 
         </table>
 
-        <button class="btn btn-primary" ng-click="AddSkill()">Add More</button>
-        <button class="btn btn-primary" ng-click="RemoveSkill()">Delete</button>
+        <button class="btn btn-primary" ng-click="AddSkill()" ng-disabled="showDetails" >Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveSkill()" ng-disabled="showDetails" >Delete</button>
     </div>
 </div>

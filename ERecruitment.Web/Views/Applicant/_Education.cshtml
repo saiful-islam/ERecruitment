@@ -22,32 +22,32 @@
             </tr>
             <tr ng-repeat="education in educations">
                 <td>
-                    <select ng-model="education.EducationID" class="form-control"
+                    <select ng-model="education.EducationID" class="form-control" ng-disabled="showDetails" 
                         ng-options="value.EducationID as value.EducationName for value in educationNames">
                     </select>
                 </td>
                 <td>
-                    <select ng-model="education.InstituteID" class="form-control"
+                    <select ng-model="education.InstituteID" class="form-control" ng-disabled="showDetails" 
                         ng-options="value.InstituteID as value.InstituteName for value in institutes">
                     </select>
                 </td>
                 <td>
-                    <input type="text" class="form-control" placeholder="Major" ng-model="education.Major">
+                    <input type="text" class="form-control" placeholder="Major" ng-model="education.Major" ng-disabled="showDetails" >
                 </td>
                 <td>
-                    <input type="text" class="form-control" placeholder="Result" ng-model="education.Result">
+                    <input type="text" class="form-control" placeholder="Result" ng-model="education.Result" ng-disabled="showDetails" >
                 </td>
                 <td>
-                    <input type="text" class="form-control datePicker" placeholder="Result" ng-model="education.PassingYear">
+                    <input type="text" class="form-control datePicker" placeholder="Result" ng-model="education.PassingYear" ng-disabled="showDetails" >
                 </td>
                 <td>
-                    <input type="checkbox" ng-model="education.IsOldResultSystem">
+                    <input type="checkbox" ng-model="education.IsOldResultSystem" ng-disabled="showDetails" >
                 </td>
             </tr>
 
         </table>
 
-        <button class="btn btn-primary" ng-click="AddEducationInfo()">Add More</button>
-        <button class="btn btn-primary" ng-click="RemoveEducationInfo()">Delete</button>
+        <button class="btn btn-primary" ng-click="AddEducationInfo()" ng-disabled="showDetails" >Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveEducationInfo()" ng-disabled="showDetails" >Delete</button>
     </div>
 </div>

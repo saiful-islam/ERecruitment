@@ -8,47 +8,47 @@
             <div class="form-group">
                 <label for="Name" class="col-lg-4 control-label">Name</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" id="Name" placeholder="Project or Thesis Name" ng-model="project.ProjectThesisName">
+                    <input type="text" class="form-control" id="Name" placeholder="Project or Thesis Name" ng-model="project.ProjectThesisName" ng-disabled="showDetails" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="RefferenceOrganization" class="col-lg-4 control-label">Refference Organization</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" id="RefferenceOrganization" placeholder="Refference Organization Name" ng-model="project.CompanyName">
+                    <input type="text" class="form-control" id="RefferenceOrganization" placeholder="Refference Organization Name" ng-model="project.CompanyName" ng-disabled="showDetails" >
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="MajorRule" class="col-lg-4 control-label">Major Rule</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" id="MajorRule" placeholder="Major Rules" ng-model="project.MajorRule">
+                    <input type="text" class="form-control" id="MajorRule" placeholder="Major Rules" ng-model="project.MajorRule" ng-disabled="showDetails" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="Description" class="col-lg-4 control-label">Description</label>
                 <div class="col-lg-8">
-                    <textarea class="form-control" rows="3" id="Description" placeholder="Description" ng-model="project.Description"></textarea>
+                    <textarea class="form-control" rows="3" id="Description" placeholder="Description" ng-model="project.Description" ng-disabled="showDetails" ></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="URL" class="col-lg-4 control-label">URL</label>
                 <div class="col-lg-8">
-                    <input type="text" id="URL" class="form-control" placeholder="URL" ng-model="project.URL" />
+                    <input type="text" id="URL" class="form-control" placeholder="URL" ng-model="project.URL" ng-disabled="showDetails"  />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="IsProject" class="col-lg-4 control-label">Is Project?</label>
                 <div class="col-lg-8">
-                    <input type="checkbox" id="IsProject" ng-model="project.IsProject">
+                    <input type="checkbox" id="IsProject" ng-model="project.IsProject" ng-disabled="showDetails" >
                 </div>
             </div>
             <br />
             <hr class="col-lg-11" />
             <br />
         </div>
-        <button class="btn btn-primary" ng-click="AddProjectInfo()">Add More</button>
-        <button class="btn btn-primary" ng-click="RemoveProjectInfo()">Delete</button>
+        <button class="btn btn-primary" ng-click="AddProjectInfo()" ng-disabled="showDetails" >Add More</button>
+        <button class="btn btn-primary" ng-click="RemoveProjectInfo()" ng-disabled="showDetails" >Delete</button>
     </div>
 </div>

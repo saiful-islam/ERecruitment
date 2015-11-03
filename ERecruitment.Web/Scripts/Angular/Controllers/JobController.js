@@ -128,6 +128,11 @@
         window.location.href = url;
     };
 
+    $scope.FinalSelection = function (jobId, jobName) {
+        var url = "/FinalSelection/Index?jobid=" + jobId + "&jobname=" + jobName;
+        window.location.href = url;
+    };
+
     $scope.CancelJobExamType = function () {
         $scope.jobExams.JobId = null;
         $scope.jobExams.JobName = null;
@@ -135,11 +140,21 @@
         $scope.showJobList = true;
     };
     $scope.SaveJobExamType = function () {
-
+        
         var objRequiredJobExamTypes = [];
         for (var type in $scope.jobExams.SelectedExamTypes) {
+            if ($scope.jobExams.SelectedExamTypes[type].ExamTypeID == 0) {
+                alert("Do not allow empty ExamType");
+                return;
+            }
             objRequiredJobExamTypes.push({ JobID: $scope.jobExams.JobId, ExamTypeID: $scope.jobExams.SelectedExamTypes[type].ExamTypeID, IsRunning: false });
         }
+        if (objRequiredJobExamTypes.length === 0) {
+            alert("Select at least one ExamType");
+            return;
+        }
+        objRequiredJobExamTypes.push({ JobID: $scope.jobExams.JobId, ExamTypeID: 4, IsRunning: false });
+        waitCursor();
         $http.post("http://localhost:6161/api/RequiredJobExamTypes", JSON.stringify(objRequiredJobExamTypes)).success(function (data) {
             console.log("Save Job Message:" + data);
             autoCursor();
@@ -154,4 +169,5 @@
     $scope.RemoveExamType = function () {
         $scope.jobExams.SelectedExamTypes.splice($scope.jobExams.SelectedExamTypes.length - 1);
     };
+   
 });
