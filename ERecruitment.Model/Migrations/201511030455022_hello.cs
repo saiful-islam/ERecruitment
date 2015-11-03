@@ -220,14 +220,18 @@ namespace ERecruitment.Model.Migrations
                     {
                         StatusCode = c.Int(nullable: false),
                         Status = c.String(nullable: false),
+                        ExamTypeID = c.Int(),
                     })
-                .PrimaryKey(t => t.StatusCode);
+                .PrimaryKey(t => t.StatusCode)
+                .ForeignKey("dbo.ExamTypeInfo", t => t.ExamTypeID)
+                .Index(t => t.ExamTypeID);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.ApplicantInfo", "StatusCode", "dbo.StatusInfo");
+            DropForeignKey("dbo.StatusInfo", "ExamTypeID", "dbo.ExamTypeInfo");
             DropForeignKey("dbo.ProjectThesisInfo", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.ApplicantInfo", "ExpertiseCode", "dbo.ExpertiseInfo");
             DropForeignKey("dbo.EducationHistory", "InstituteID", "dbo.InstituteInfo");
@@ -244,6 +248,7 @@ namespace ERecruitment.Model.Migrations
             DropForeignKey("dbo.RequiredJobExamTypes", "ExamTypeID", "dbo.ExamTypeInfo");
             DropForeignKey("dbo.ExamInfo", "ApplicantID", "dbo.ApplicantInfo");
             DropForeignKey("dbo.ApplicantSkillHistory", "ApplicantID", "dbo.ApplicantInfo");
+            DropIndex("dbo.StatusInfo", new[] { "ExamTypeID" });
             DropIndex("dbo.ProjectThesisInfo", new[] { "ApplicantID" });
             DropIndex("dbo.EducationHistory", new[] { "InstituteID" });
             DropIndex("dbo.EducationHistory", new[] { "EducationID" });

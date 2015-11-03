@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\ExpertiseController.cs" />
+    <Compile Include="Controllers\FinalSelectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -183,11 +184,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\head_logo.png" />
     <Content Include="Scripts\aftersite.js" />
+    <Content Include="Scripts\angular-datatables.min.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\Angular\AG\ag-grid.js" />
     <Content Include="Scripts\Angular\app.js" />
     <Content Include="Scripts\Angular\Controllers\ApplicantController.js" />
     <Content Include="Scripts\Angular\Controllers\ExpertiseController.js" />
+    <Content Include="Scripts\Angular\Controllers\FinalSelectionController.js" />
     <Content Include="Scripts\Angular\Controllers\HomeController.js" />
     <Content Include="Scripts\Angular\Controllers\JobController.js" />
     <Content Include="Scripts\Angular\Controllers\ExamController.js" />
@@ -202,6 +207,7 @@
     <Content Include="Scripts\Angular\Models\InstituteModel.js" />
     <Content Include="Scripts\Angular\Models\JobModel.js" />
     <Content Include="Scripts\Angular\Models\ProjectThesisModel.js" />
+    <Content Include="Scripts\Angular\Models\RequiredJobEducationModel.js" />
     <Content Include="Scripts\Angular\Models\SkillHistoryModel.js" />
     <Content Include="Scripts\Angular\Models\RequiredJobSkillModel.js" />
     <Content Include="Scripts\Angular\Models\SectionModel.js" />
@@ -214,6 +220,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -286,6 +293,7 @@
     <Content Include="Views\SelectApplicant\Index.cshtml" />
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Job\_ExamTypes.cshtml" />
+    <Content Include="Views\FinalSelection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -77,10 +77,6 @@
     $http.get("http://localhost:6161/api/Institute").success(function (data) {
         $scope.institutes = data;
     });
-    //$http.get("http://localhost:6161/api/Applicant").success(function (data) {
-    //    $scope.applicantList = data;
-    //    console.log(data);
-    //});
     $http.get("http://localhost:6161/api/Skill").success(function (data) {
         $scope.skillNames = data;
     });
@@ -223,7 +219,7 @@
         return cellRendererNormalCell(params);
     }
     $scope.pageSize = '500';
-    var TEMPLATE = '<button id="btnEdit">Edit</button>  <button id="btnDelete">Delete</button>  <button id="btnDetails">Details</button>';
+    var TEMPLATE = '<button class="btn btn-primary btn-xs" id="btnEdit">Edit</button>  <button class="btn btn-danger btn-xs" id="btnDelete">Delete</button>  <button class="btn btn-info btn-xs" id="btnDetails">Details</button>';
 
     function cellRendererNormalCell(params) {
         var eSpan = document.createElement('div');

@@ -5,7 +5,7 @@
         jobname: getParameterByName('jobname'),
         examTypeId: 4,
         examType: "Final Selection",
-        applicantList: [],
+        applicantList: []
     };
     
     $http.post("http://localhost:6161/api/Exam", JSON.stringify({

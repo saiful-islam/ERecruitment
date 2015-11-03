@@ -18,7 +18,10 @@ namespace ERecruitment.Model.Models
         public int StatusCode { get; set; }
         [Required]
         public string Status { get; set; }
+        [ForeignKey("ExamTypeInfo")]
+        public int? ExamTypeID { get; set; }
 
         public virtual ICollection<ApplicantInfo> ApplicantInfo { get; set; }
+        public virtual ExamTypeInfo ExamTypeInfo { get; set; }
     }
 }

@@ -84,6 +84,23 @@ namespace ERecruitment.API.Controllers
                             }
                         }
                     }
+
+                    if (examInfo.IsRejected)
+                    {
+                        int statusCode = Db.StatusInfo.Where(e => e.ExamTypeID == examInfo.ExamTypeID).Select(e => e.StatusCode).FirstOrDefault();
+                        ApplicantInfo objApplicantInfo = Db.ApplicantInfo.Find(examInfo.ApplicantID);
+                        objApplicantInfo.StatusCode = statusCode;
+                        Db.Entry(objApplicantInfo).State = EntityState.Modified;
+                        Db.SaveChanges();
+                    }
+                    else if (examInfo.ExamTypeID == 4 && examInfo.IsExamCompleted)
+                    {
+                        ApplicantInfo objApplicantInfo = Db.ApplicantInfo.Find(examInfo.ApplicantID);
+                        objApplicantInfo.StatusCode = 1;
+                        Db.Entry(objApplicantInfo).State = EntityState.Modified;
+                        Db.SaveChanges();
+                    }
+
                     Db.Entry(examInfo).State = EntityState.Modified;
                     Db.SaveChanges();
                 }
